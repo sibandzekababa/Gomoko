@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { getAllGames, issueUrl } from "@/app/games/_lib/loader";
+import { getAllGames } from "@/app/games/_lib/loader";
 
 const DIFFICULTY_STYLES = {
   easy: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300",
@@ -17,16 +17,9 @@ const STATUS_LABEL = {
 
 function GameCard({ game }) {
   const isDone = game.status === "done";
-  const href = isDone ? `/games/${game.slug}` : issueUrl(game.issue);
-  const external = !isDone;
 
   return (
-    <Link
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className="group focus-visible:outline-none"
-    >
+    <Link href={`/games/${game.slug}`} className="group focus-visible:outline-none">
       <Card className="group-hover:border-primary/60 group-focus-visible:border-primary h-full transition-colors">
         <CardHeader>
           <div className="flex items-start justify-between gap-2">
